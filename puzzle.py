@@ -1,4 +1,4 @@
-#!/use/bin/env python3
+#!/usr/bin/env python3
 
 import sys
 import os
@@ -212,11 +212,24 @@ def filter_perf(data, start, end, tolerance, ref_start, ref_end, ref_tolerance):
     return values
 
 
+def dist(perf, rating):
+    ratings = sorted([p[1][-1][1] for p in perf])
+    pos = 1
+    for n, r in enumerate(ratings):
+        if rating < r:
+            pos = n
+            break
+    print(f"Better than {100*pos/len(ratings):.2f}% of sampled users")
+
+
 def parseargs():
     parser = argparse.ArgumentParser(
         description='Analyze lichess puzzle performance change over time')
 
-    parser.add_argument('command', choices=["fetch", "filter", "stats"])
+    parser.add_argument('command', choices=[
+                        "fetch", "filter", "stats", "dist"])
+    parser.add_argument('rating', type=int, nargs='?',
+                        help='Dist command only: rating to compare against')
     parser.add_argument('--userfile', default="users.json",
                         help='Filename for cached (json) usernames')
     parser.add_argument('--perffile', default="perf.json",
@@ -262,3 +275,5 @@ if __name__ == "__main__":
             values = json.load(f)
         deltas = analyze(values, args.start, args.end, tolerance,
                          args.ref_start, args.ref_end, ref_tolerance)
+    elif args.command == "dist":
+        dist(parse_perf(perf), args.rating)
