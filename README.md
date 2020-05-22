@@ -1,6 +1,6 @@
 Performance statistics for lichess
 
-Lichess.org is an amazing free and open source chess site. It has various built-in stats for the performance of players, exposes an API to query their database, and publishes datasets of games played.
+Lichess.org is an amazing free and [open source](https://github.com/ornicar/lila/) chess site. It has various built-in stats for the performance of players, exposes an API to query their database, and publishes datasets of games played.
 
 This tool extends the built-in statistical analysis of lichess to do:
  1. Puzzle rating distribution
