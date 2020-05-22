@@ -9,9 +9,13 @@ This tool extends the built-in statistical analysis of lichess to do:
 It is not a 'production quality' tool, but a hacky script written to answer some specific questions.
 
 # Rating distribution
-For reasons I'm not familiar with, Lichess doesn't tell you how your puzzle performance compares to other users, like it does for all your other performance scores. We derive it locally by downloading a sample of user's puzzle performance via the API, then comparing a given score against that distribution. To see where a puzzle rating of 2000 falls in your sample, run:
+For reasons I'm not familiar with, Lichess doesn't tell you how your puzzle performance compares to other users, like it does for all your other performance scores. We derive it locally by downloading a sample of user's puzzle performance via the API, then comparing a given score against that distribution. To see where a puzzle rating of 2000 falls in a sample, run:
 
-`puzzle.py dist 2000`
+```
+$ ./puzzle.py dist 2000 --perffile perf-65k-users-april-2020.json
+Read 65528 cached users' performance data
+Better than 83.24% of sampled users
+```
 
 # Change in puzzle ratings over time
 During the start of the lockdown measures in response to the COVID-19 pandemic, I found my puzzle rating plumeted - I presume due to the stress of the situation. I wondered if the same had happened to others, and wrote this tool to try and answer the question.
